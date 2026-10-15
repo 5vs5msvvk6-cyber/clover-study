@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e8f6ed">
+<title>Clover Study｜ミントの勉強手帳</title>
+<style>
+:root{--bg:#f4faf5;--card:#fff;--mint:#dff2e5;--mint2:#c5e6d0;--green:#47785a;--deep:#2f5d41;--text:#33463a;--muted:#829487;--line:#e3eee5;--pink:#fff0f1;--yellow:#fff7db;--shadow:0 8px 24px #2c654414}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",Meiryo,sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #9acdad;outline-offset:2px}
+.app{max-width:1080px;margin:auto;padding:18px 14px 36px}.hero{background:linear-gradient(135deg,#e5f5e9,#f8fcf7 70%);border:1px solid #d8ecdd;border-radius:28px;padding:23px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:var(--shadow)}
+.eyebrow{font-size:11px;letter-spacing:.16em;color:var(--green);font-weight:800}.hero h1{font-size:clamp(23px,5vw,34px);margin:7px 0 5px;color:var(--deep);letter-spacing:.02em}.hero p{margin:0;color:#688270;font-size:13px}.clover{font-size:56px;filter:drop-shadow(0 5px 4px #42784b18)}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 15px;box-shadow:var(--shadow)}.stat .label{font-size:12px;color:var(--muted)}.stat strong{display:block;color:var(--deep);font-size:22px;margin-top:5px}.stat small{font-size:12px;color:var(--muted);font-weight:500}
+.layout{display:grid;grid-template-columns:310px minmax(0,1fr);gap:14px;align-items:start}.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:17px;box-shadow:var(--shadow);margin-bottom:14px}.panel h2{font-size:16px;margin:0 0 14px;color:var(--deep);display:flex;align-items:center;gap:8px}.panel h3{font-size:14px;margin:0 0 10px;color:var(--deep)}
+.monthbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.monthbar strong{font-size:15px}.roundbtn{width:32px;height:32px;border-radius:50%;background:var(--mint);color:var(--deep);font-weight:800}.week,.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.week div{text-align:center;font-size:10px;color:var(--muted);padding:5px 0}.day{min-width:0;aspect-ratio:1;border-radius:12px;background:#f8fbf8;color:var(--text);font-size:12px;position:relative}.day.muted{color:#bdc9bf;background:transparent}.day.selected{background:var(--green);color:white;font-weight:800}.day.today:not(.selected){box-shadow:inset 0 0 0 1.5px #85b994}.day .dot{position:absolute;width:4px;height:4px;border-radius:50%;background:#e5a7b0;bottom:4px;left:calc(50% - 2px)}.day.selected .dot{background:#fff}
+.selecteddate{font-size:12px;color:var(--muted);margin-top:12px}
+.progressbox{background:#f3faf4;border-radius:15px;padding:12px;margin-top:13px}.progressrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px}.bar{height:7px;background:#dfebe1;border-radius:20px;overflow:hidden}.bar span{display:block;height:100%;width:0;background:#77b58a;border-radius:20px;transition:width .2s}
+.task{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid #edf3ee}.task:last-child{border-bottom:0}.task input[type=checkbox]{accent-color:var(--green);width:18px;height:18px;margin:2px 0 0;flex-shrink:0}.taskbody{flex:1;min-width:0}.taskname{font-size:14px;overflow-wrap:anywhere}.task.done .taskname{text-decoration:line-through;color:#9aaa9d}.taskmeta{font-size:11px;color:var(--muted);margin-top:4px}.tag{display:inline-block;border-radius:999px;background:var(--mint);padding:4px 9px;font-size:11px;color:var(--green);font-weight:700;margin:0 5px 8px 0}.tag.history{background:#fce9ed;color:#a65c6c}.addrow{display:flex;gap:7px;margin-top:12px}.field{min-width:0;width:100%;border:1px solid var(--line);background:#fbfdfb;border-radius:12px;padding:10px 11px;color:var(--text)}.field::placeholder{color:#a9b8ad}.smallfield{width:76px;flex-shrink:0}.primary{background:var(--green);color:#fff;border-radius:12px;padding:10px 14px;font-weight:700;white-space:nowrap}.soft{background:var(--mint);color:var(--deep);border-radius:12px;padding:9px 12px;font-weight:700}.delete{background:transparent;color:#bd8b93;font-size:18px;padding:0 5px}
+textarea.field{min-height:104px;resize:vertical;line-height:1.7}.timerdisplay{text-align:center;font-variant-numeric:tabular-nums;font-size:clamp(40px,9vw,58px);font-weight:750;letter-spacing:.04em;color:var(--deep);padding:10px 0}.timercontrols{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.modebar{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}.modebar button{background:#f2f8f3;color:#688270;border-radius:999px;padding:8px 12px;font-size:12px}.modebar button.active{background:var(--mint2);color:var(--deep);font-weight:800}.timerhint{text-align:center;color:var(--muted);font-size:12px;margin:9px 0 13px}.empty{color:var(--muted);font-size:12px;padding:12px 0}.bottomtools{display:flex;gap:8px;flex-wrap:wrap}.filelabel{display:inline-flex;align-items:center;background:var(--mint);color:var(--deep);border-radius:12px;padding:9px 12px;font-size:12px;font-weight:700;cursor:pointer}.filelabel input{display:none}.footnote{font-size:11px;color:var(--muted);line-height:1.6;margin:12px 3px 0}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.summary{gap:7px}.stat{padding:12px 10px}.stat strong{font-size:19px}.hero{padding:19px}.clover{font-size:45px}.panel{padding:15px}.calendar{gap:5px}.day{border-radius:10px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="hero"><div><div class="eyebrow">MY LITTLE STUDY JOURNAL</div><h1>Clover Study</h1><p>今日の一歩を、四つ葉のクローバーに。🍀</p></div><div class="clover" aria-hidden="true">🍀</div></header>
+<section class="summary">
+ <div class="stat"><div class="label">🌱 累計勉強時間</div><strong id="totalTime">0時間 0分</strong></div>
+ <div class="stat"><div class="label">☘️ 今日の達成率</div><strong id="todayRate">0%</strong></div>
+ <div class="stat"><div class="label">🗓️ 記録した日</div><strong id="recordDays">0 <small>日</small></strong></div>
+</section>
+<div class="layout">
+<aside>
+ <section class="panel">
+  <h2>🗓️ カレンダー</h2>
+  <div class="monthbar"><button class="roundbtn" id="prevMonth" aria-label="前の月">‹</button><strong id="monthTitle"></strong><button class="roundbtn" id="nextMonth" aria-label="次の月">›</button></div>
+  <div class="week"><div>日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div>土</div></div>
+  <div class="calendar" id="calendar"></div><div class="selecteddate" id="selectedDate"></div>
+  <div class="progressbox"><div class="progressrow"><span>今日のチェックリスト</span><strong id="progressText">0 / 0</strong></div><div class="bar"><span id="progressBar"></span></div></div>
+ </section>
+ <section class="panel">
+  <h2>⏱️ 勉強タイマー</h2>
+  <h3>科目</h3><select class="field" id="timerSubject"><option>国語</option><option>日本史</option><option>英語</option><option>その他</option></select>
+  <div class="timerdisplay" id="stopwatchDisplay">00:00:00</div><div class="timerhint">ストップウォッチ</div>
+  <div class="timercontrols"><button class="primary" id="swStart">スタート</button><button class="soft" id="swPause">一時停止・記録</button><button class="soft" id="swReset">リセット</button></div>
+  <hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
+  <div class="modebar"><button class="active" data-mode="25">集中 25分</button><button data-mode="5">休憩 5分</button><button data-mode="15">長い休憩 15分</button></div>
+  <div class="timerdisplay" id="pomoDisplay">25:00</div><div class="timerhint" id="pomoHint">集中する時間。終わったら勉強時間に記録されるよ。</div>
+  <div class="timercontrols"><button class="primary" id="pomoStart">スタート</button><button class="soft" id="pomoReset">やり直す</button></div>
+ </section>
+</aside>
+<main>
+ <section class="panel">
+  <h2>✏️ 今日の勉強リスト</h2><div><span class="tag">国語</span><span class="tag">日本史</span><span class="tag">英語</span><span class="tag">その他</span></div>
+  <div id="tasks"></div>
+  <div class="addrow"><input id="newTask" class="field" placeholder="例：古文単語を30個覚える"><select id="newSubject" class="field smallfield"><option>国語</option><option>日本史</option><option>英語</option><option>その他</option></select><input id="newMinutes" class="field smallfield" type="number" min="0" placeholder="分"><button class="primary" id="addTask">追加</button></div>
+ </section>
+ <section class="panel">
+  <h2>📝 今日覚えたこと・メモ</h2><textarea id="notes" class="field" placeholder="今日勉強した内容や、覚えておきたいことを書こう…"></textarea><div class="footnote">入力内容は自動保存されるよ。</div>
+ </section>
+ <section class="panel">
+  <h2>🌼 To Do リスト</h2><div id="todos"></div>
+  <div class="addrow"><input id="newTodo" class="field" placeholder="例：模試の申し込みをする"><button class="primary" id="addTodo">追加</button></div>
+ </section>
+ <section class="panel">
+  <h2>🎀 記録のバックアップ</h2><div class="bottomtools"><button class="soft" id="exportData">記録をバックアップ</button><label class="filelabel">バックアップを読み込む<input type="file" id="importData" accept=".json,application/json"></label></div><p class="footnote">記録はこのブラウザ内に保存されるよ。機種変更やデータ消去に備えて、ときどきバックアップしてね。別の端末とは自動同期されないよ。</p>
+ </section>
+</main>
+</div>
+</div>
+<script>
+(()=> {
+const $=id=>document.getElementById(id);
+const todayKey=()=>dateKey(new Date());
+const dateKey=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const safeDate=k=>{const [y,m,d]=k.split('-').map(Number);return new Date(y,m-1,d)};
+const blankDay=()=>({tasks:[],todos:[],notes:'',minutes:{}});
+let state={days:{}};
+try{state=JSON.parse(localStorage.getItem('cloverStudy.v1'))||state}catch(e){}
+let selected=todayKey(), month=new Date(), swElapsed=0, swStarted=null, swInterval=null, pomoSeconds=1500, pomoMode=25, pomoStarted=null, pomoInterval=null;
+function day(k=selected){if(!state.days[k])state.days[k]=blankDay();return state.days[k]}
+function save(){try{localStorage.setItem('cloverStudy.v1',JSON.stringify(state))}catch(e){} renderSummary();renderCalendar()}
+function fmtTime(sec){sec=Math.max(0,Math.floor(sec));return `${String(Math.floor(sec/3600)).padStart(2,'0')}:${String(Math.floor(sec%3600/60)).padStart(2,'0')}:${String(sec%60).padStart(2,'0')}`}
+function fmtMin(min){return `${Math.floor(min/60)}時間 ${min%60}分`}
+function totalMinutes(d){return Object.values(d.minutes||{}).reduce((a,b)=>a+(Number(b)||0),0)}
+function renderSummary(){let total=Object.values(state.days).reduce((a,d)=>a+totalMinutes(d),0);$('totalTime').textContent=fmtMin(total);const t=day(todayKey());let done=(t.tasks||[]).filter(x=>x.done).length;let n=(t.tasks||[]).length;$('todayRate').textContent=(n?Math.round(done/n*100):0)+'%';$('recordDays').innerHTML=Object.entries(state.days).filter(([k,d])=>totalMinutes(d)>0||(d.tasks||[]).length||(d.todos||[]).length||(d.notes||'').trim()).length+' <small>日</small>';let all=day();let c=(all.tasks||[]).filter(x=>x.done).length;let count=(all.tasks||[]).length;$('progressText').textContent=`${c} / ${count}`;$('progressBar').style.width=(count?c/count*100:0)+'%'}
+function renderCalendar(){const y=month.getFullYear(),m=month.getMonth();$('monthTitle').textContent=`${y}年 ${m+1}月`;const first=new Date(y,m,1),start=new Date(y,m,1-first.getDay());let html='';for(let i=0;i<42;i++){let d=new Date(start);d.setDate(start.getDate()+i);let k=dateKey(d),data=state.days[k];let has=data&&(totalMinutes(data)>0||(data.tasks||[]).length||(data.todos||[]).length||(data.notes||'').trim());html+=`<button class="day ${d.getMonth()!==m?'muted':''} ${k===selected?'selected':''} ${k===todayKey()?'today':''}" data-date="${k}">${d.getDate()}${has?'<span class="dot"></span>':''}</button>`} $('calendar').innerHTML=html;$('selectedDate').textContent='選択中：'+selected.replaceAll('-','/');$('calendar').querySelectorAll('[data-date]').forEach(b=>b.addEventListener('click',()=>{selected=b.dataset.date;renderAll()}))}
+function renderTasks(){let d=day();$('tasks').innerHTML='';if(!d.tasks.length)$('tasks').innerHTML='<div class="empty">まだリストがないよ。下から追加してね🍀</div>';d.tasks.forEach((t,i)=>{let el=document.createElement('div');el.className='task'+(t.done?' done':'');el.innerHTML=`<input type="checkbox" ${t.done?'checked':''} aria-label="完了"><div class="taskbody"><div class="taskname"></div><div class="taskmeta"></div></div><button class="delete" aria-label="削除">×</button>`;el.querySelector('.taskname').textContent=t.name;el.querySelector('.taskmeta').textContent=t.subject+(t.minutes?` ・目安 ${t.minutes}分`:'');el.querySelector('input').addEventListener('change',e=>{t.done=e.target.checked;save();renderTasks()});el.querySelector('.delete').addEventListener('click',()=>{d.tasks.splice(i,1);save();renderAll()});$('tasks').appendChild(el)})}
+function renderTodos(){let d=day();$('todos').innerHTML='';if(!d.todos.length)$('todos').innerHTML='<div class="empty">用事や小さな目標もここにメモしよう。</div>';d.todos.forEach((t,i)=>{let el=document.createElement('div');el.className='task'+(t.done?' done':'');el.innerHTML=`<input type="checkbox" ${t.done?'checked':''} aria-label="完了"><div class="taskbody"><div class="taskname"></div></div><button class="delete" aria-label="削除">×</button>`;el.querySelector('.taskname').textContent=t.name;el.querySelector('input').addEventListener('change',e=>{t.done=e.target.checked;save();renderTodos()});el.querySelector('.delete').addEventListener('click',()=>{d.todos.splice(i,1);save();renderAll()});$('todos').appendChild(el)})}
+function renderAll(){renderCalendar();renderTasks();renderTodos();$('notes').value=day().notes||'';renderSummary()}
+$('prevMonth').onclick=()=>{month=new Date(month.getFullYear(),month.getMonth()-1,1);renderCalendar()};
+$('nextMonth').onclick=()=>{month=new Date(month.getFullYear(),month.getMonth()+1,1);renderCalendar()};
+$('addTask').onclick=()=>{let name=$('newTask').value.trim();if(!name)return;day().tasks.push({name,subject:$('newSubject').value,minutes:Math.max(0,Number($('newMinutes').value)||0),done:false});$('newTask').value='';$('newMinutes').value='';save();renderAll()};
+$('newTask').addEventListener('keydown',e=>{if(e.key==='Enter')$('addTask').click()});
+$('addTodo').onclick=()=>{let name=$('newTodo').value.trim();if(!name)return;day().todos.push({name,done:false});$('newTodo').value='';save();renderAll()};
+$('newTodo').addEventListener('keydown',e=>{if(e.key==='Enter')$('addTodo').click()});
+$('notes').addEventListener('input',()=>{day().notes=$('notes').value;save()});
+function updateSW(){let elapsed=swElapsed+(swStarted?Math.floor((Date.now()-swStarted)/1000):0);$('stopwatchDisplay').textContent=fmtTime(elapsed)}
+$('swStart').onclick=()=>{if(swStarted)return;swStarted=Date.now();swInterval=setInterval(updateSW,250)};
+$('swPause').onclick=()=>{if(swStarted){swElapsed+=Math.floor((Date.now()-swStarted)/1000);swStarted=null;clearInterval(swInterval);swInterval=null}let mins=Math.floor(swElapsed/60);if(mins>0){let d=day();let sub=$('timerSubject').value;d.minutes[sub]=(d.minutes[sub]||0)+mins;swElapsed%=60;save()}updateSW()};
+$('swReset').onclick=()=>{swStarted=null;swElapsed=0;clearInterval(swInterval);swInterval=null;updateSW()};
+function updatePomo(){let left=pomoSeconds;if(pomoStarted)left=Math.max(0,pomoSeconds-Math.floor((Date.now()-pomoStarted)/1000));$('pomoDisplay').textContent=`${String(Math.floor(left/60)).padStart(2,'0')}:${String(left%60).padStart(2,'0')}`;if(left<=0&&pomoStarted){clearInterval(pomoInterval);pomoInterval=null;pomoStarted=null;if(pomoMode===25){let d=day(),sub=$('timerSubject').value;d.minutes[sub]=(d.minutes[sub]||0)+25;save();$('pomoHint').textContent=`集中25分を${sub}に記録したよ！おつかれさま🍀`}else{$('pomoHint').textContent='休憩おしまい！次の集中もがんばろう🍀'}$('pomoStart').textContent='スタート';alert(pomoMode===25?'集中タイム終了！25分を記録したよ🍀':'休憩終了！')} }
+function setPomoMode(m){if(pomoStarted){clearInterval(pomoInterval);pomoInterval=null;pomoStarted=null}$('pomoStart').textContent='スタート';pomoMode=m;pomoSeconds=m*60;$('pomoHint').textContent=m===25?'集中する時間。終わったら勉強時間に記録されるよ。':'休憩タイム。休憩は勉強時間に加算されないよ。';document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',Number(b.dataset.mode)===m));updatePomo()}
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>setPomoMode(Number(b.dataset.mode)));
+$('pomoStart').onclick=()=>{if(pomoStarted){clearInterval(pomoInterval);pomoInterval=null;pomoStarted=null;$('pomoStart').textContent='再開';updatePomo()}else{pomoStarted=Date.now();$('pomoStart').textContent='一時停止';pomoInterval=setInterval(updatePomo,250)}};
+$('pomoReset').onclick=()=>setPomoMode(pomoMode);
+$('exportData').onclick=()=>{let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='clover-study-backup.json';a.click();URL.revokeObjectURL(url)};
+$('importData').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let parsed=JSON.parse(await f.text());if(!parsed.days||typeof parsed.days!=='object')throw new Error();if(confirm('今の記録をバックアップの内容に置き換える？')){state=parsed;save();renderAll();alert('読み込みできたよ🍀')}}catch(err){alert('このバックアップは読み込めなかったよ。ファイルを確認してね。')}e.target.value=''};
+renderAll();updateSW();updatePomo();
+})();
+</script>
+</body>
+</html>
